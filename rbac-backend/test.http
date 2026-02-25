@@ -1,4 +1,4 @@
-POST http://localhost:5001/api/auth/register
+POST /api/auth/register
 Content-Type: application/json
 
 {
@@ -8,7 +8,7 @@ Content-Type: application/json
   "role": "Admin"
 }
 ### Login Request
-POST http://localhost:5001/api/auth/login
+POST /api/auth/login
 Content-Type: application/json
 
 {
@@ -16,16 +16,16 @@ Content-Type: application/json
   "password": "NewSecurePassword123"
 }
 ### Protected Test Route
-GET http://localhost:5001/api/user/test
+GET /api/user/test
 token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWRmMGI3MzJiZDk2OTIwYmVhMTBhZCIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTc3MTk2MDY5NCwiZXhwIjoxNzcxOTY0Mjk0fQ.71aLHzejkE6_WFX7Q0gflUlluWAPXrG2_MVLVz4P0iA
 ### Admin Dashboard Test
-GET http://localhost:5001/api/user/admin-dashboard
+GET /api/user/admin-dashboard
 token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWRmMGI3MzJiZDk2OTIwYmVhMTBhZCIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTc3MTk2MDY5NCwiZXhwIjoxNzcxOTY0Mjk0fQ.71aLHzejkE6_WFX7Q0gflUlluWAPXrG2_MVLVz4P0iA
 ### Profile Access Test
-GET http://localhost:5001/api/user/profile/699df0b732bd96920bea10ad
+GET /api/user/profile/699df0b732bd96920bea10ad
 token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWRmMGI3MzJiZDk2OTIwYmVhMTBhZCIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTc3MTk2MDY5NCwiZXhwIjoxNzcxOTY0Mjk0fQ.71aLHzejkE6_WFX7Q0gflUlluWAPXrG2_MVLVz4P0iA
 ###Normal User Testing
-POST http://localhost:5001/api/auth/register
+POST /api/auth/register
 Content-Type: application/json
 
 {
@@ -35,7 +35,7 @@ Content-Type: application/json
   "role": "User" 
 }
 ###Login Test
-POST http://localhost:5001/api/auth/login
+POST /api/auth/login
 Content-Type: application/json
 
 {
@@ -43,13 +43,13 @@ Content-Type: application/json
   "password": "UserPassword123"
 }
 ### Attempt admin access check
-GET http://localhost:5001/api/user/admin-dashboard
+GET /api/user/admin-dashboard
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWRmZTkwNWIwNTI4ZmJlNDk3MjM2MSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzcxOTYyMDI2LCJleHAiOjE3NzE5NjU2MjZ9.9i5VfMnFCtVbybilGHb8TTdNlmQRKsMqJrqZMBvorkY
 ### Delete User (Admin Only)
-DELETE http://localhost:5001/api/user/699dfe905b0528fbe4972361
+DELETE /api/user/699dfe905b0528fbe4972361
 token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWRmMGI3MzJiZDk2OTIwYmVhMTBhZCIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTc3MTk2MjQ2NSwiZXhwIjoxNzcxOTY2MDY1fQ.7QXrQVAF9l2ZKPHgpocQKfMqWRdv_jm6TDIZ6o_zvQU
 ### Update User
-PUT http://localhost:5001/api/user/699df0b732bd96920bea10ad
+PUT /api/user/699df0b732bd96920bea10ad
 Content-Type: application/json
 token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWRmMGI3MzJiZDk2OTIwYmVhMTBhZCIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTc3MTk2MzE3MCwiZXhwIjoxNzcxOTY2NzcwfQ.pIn_OsVI-CbNhzF2_SPdnGwnZMCrRL04l7AgH_oHW0U
 
@@ -58,5 +58,5 @@ token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWRmMGI3MzJiZDk2O
   "password": "NewSecurePassword123"
 }
 ### Get All Users Professional
-GET http://localhost:5001/api/user/
+GET /api/user/
 token: Bearer PASTE_YOUR_ADMIN_TOKEN_HERE
