@@ -8,6 +8,16 @@ const {
     verifyTokenAndAdmin 
 } = require('../middleware/verifyToken');
 
+router.get('/profile', verifyToken, async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select('-password');
+        if (!user) return res.status(404).json("User not found");
+        res.status(200).json(user);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 router.get('/test', verifyToken, (req, res) => {
     res.status(200).json("Welcome! valid token");
 });
@@ -31,6 +41,7 @@ router.delete('/:id', verifyTokenAndAdmin, async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
+
 router.put('/:id', verifyTokenAndAuthorization, async (req, res) => {
     if (req.body.password) {
         const salt = await bcrypt.genSalt(10);
@@ -49,14 +60,13 @@ router.put('/:id', verifyTokenAndAuthorization, async (req, res) => {
     }
 });
 
-
 router.get('/', verifyTokenAndAdmin, async (req, res) => {
     try {
-        
         const users = await User.find().select('-password').sort({ createdAt: -1 });
         res.status(200).json(users);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
+
 module.exports = router;
