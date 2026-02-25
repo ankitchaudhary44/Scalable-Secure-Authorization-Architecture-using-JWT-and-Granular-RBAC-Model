@@ -86,20 +86,20 @@ const Dashboard = () => {
         return;
       }
 
-      const res = await API.get('http://localhost:5001/api/user/profile', {
+      const res = await API.get('/api/user/profile', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUserData(res.data);
 
       if (res.data.role === 'Admin') {
         const [usersRes, logsRes, statsRes] = await Promise.all([
-          API.get('http://localhost:5001/api/user/', {
+          API.get('/api/user/', {
             headers: { Authorization: `Bearer ${token}` }
           }),
-          API.get('http://localhost:5001/api/logs', {
+          API.get('/api/logs', {
             headers: { Authorization: `Bearer ${token}` }
           }),
-          API.get('http://localhost:5001/api/logs/stats', {
+          API.get('/api/logs/stats', {
             headers: { Authorization: `Bearer ${token}` }
           })
         ]);
@@ -157,7 +157,7 @@ const Dashboard = () => {
     if (window.confirm("Terminate this user node?")) {
       try {
         const token = localStorage.getItem('token');
-        await API.delete(`http://localhost:5001/api/user/${id}`, {
+        await API.delete(`/api/user/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         toast.success("User Node Terminated");

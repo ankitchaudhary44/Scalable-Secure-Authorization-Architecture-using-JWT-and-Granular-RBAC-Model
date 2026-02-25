@@ -16,7 +16,7 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      const response = await API.post('http://localhost:5001/api/auth/login', {
+      const response = await API.post('/api/auth/login', {
         email,
         password
       });

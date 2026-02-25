@@ -19,7 +19,7 @@ const Signup = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const response = await API.post('http://localhost:5001/api/auth/register', formData);
+      const response = await API.post('/api/auth/register', formData);
       toast.success('Access Granted! Account Created.');
       
       
