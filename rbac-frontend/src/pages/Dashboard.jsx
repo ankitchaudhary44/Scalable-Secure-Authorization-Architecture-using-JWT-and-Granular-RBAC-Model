@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Users, ShieldAlert, LogOut, UserCircle, ShieldCheck, Trash2, Activity, Globe, Download, TrendingUp } from 'lucide-react';
 import toast from 'react-hot-toast';
-import axios from 'axios';
+import API from '../api';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { Line } from 'react-chartjs-2';
@@ -86,20 +86,20 @@ const Dashboard = () => {
         return;
       }
 
-      const res = await axios.get('http://localhost:5001/api/user/profile', {
+      const res = await API.get('http://localhost:5001/api/user/profile', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUserData(res.data);
 
       if (res.data.role === 'Admin') {
         const [usersRes, logsRes, statsRes] = await Promise.all([
-          axios.get('http://localhost:5001/api/user/', {
+          API.get('http://localhost:5001/api/user/', {
             headers: { Authorization: `Bearer ${token}` }
           }),
-          axios.get('http://localhost:5001/api/logs', {
+          API.get('http://localhost:5001/api/logs', {
             headers: { Authorization: `Bearer ${token}` }
           }),
-          axios.get('http://localhost:5001/api/logs/stats', {
+          API.get('http://localhost:5001/api/logs/stats', {
             headers: { Authorization: `Bearer ${token}` }
           })
         ]);
@@ -157,7 +157,7 @@ const Dashboard = () => {
     if (window.confirm("Terminate this user node?")) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`http://localhost:5001/api/user/${id}`, {
+        await API.delete(`http://localhost:5001/api/user/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         toast.success("User Node Terminated");

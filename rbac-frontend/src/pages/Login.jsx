@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import API from '../api';
 import toast, { Toaster } from 'react-hot-toast';
 import { Eye, EyeOff, Shield } from 'lucide-react'; 
 import { Link, useNavigate } from 'react-router-dom'; 
@@ -16,7 +16,7 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:5001/api/auth/login', {
+      const response = await API.post('http://localhost:5001/api/auth/login', {
         email,
         password
       });
